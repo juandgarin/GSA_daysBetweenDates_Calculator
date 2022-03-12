@@ -54,7 +54,7 @@
 }
 
 .description {
-  margin: 4rem 0;
+  margin: .5rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
 }
@@ -63,6 +63,7 @@
   background: #828282;
   border-radius: 5px;
   padding: 0.75rem;
+  margin-left:15px;
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;

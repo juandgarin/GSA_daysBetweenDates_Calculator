@@ -49,7 +49,7 @@ export default function Home() {
 
         <p className={styles.description}>
           Get started by adding {' '}
-          <code className={styles.code}>2 different dates</code>
+           2 different dates 
         </p>
 
         <div className={styles.grid}>
@@ -93,9 +93,9 @@ export default function Home() {
 
       <footer className={styles.footer}>
         Powered by{' '}
-        <span className={styles.logo}>
-          <Image src="/gsawhite.png" alt="Gsa" width={55} height={40} />
-        </span>
+        <span>
+          Gsa Team
+       </span>
       </footer>
     </div >
   )

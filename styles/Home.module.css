@@ -19,6 +19,7 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  color:white;
 }
 
 .footer a {
@@ -29,7 +30,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -42,12 +43,14 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2rem;
+  color: #D6DCE5 !important;
 }
 
 .title,
 .description {
   text-align: center;
+  color: #D6DCE5 !important;
 }
 
 .description {
@@ -57,7 +60,7 @@
 }
 
 .code {
-  background: #fafafa;
+  background: #828282;
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
@@ -71,25 +74,28 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
+  align-items: center;
 }
 
 .card {
   margin: 1rem;
-  padding: 1.5rem;
+  padding: 1rem;
+  display:flex;
   text-align: left;
-  color: inherit;
+  color: #D6DCE5;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 400px;
+  font-size:20px;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #9ca6b1;
+  border-color: #4c89d0;
 }
 
 .card h2 {
@@ -102,10 +108,20 @@
   font-size: 1.25rem;
   line-height: 1.5;
 }
-
+.dateInput{
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding: .3rem;
+  margin: 1rem;
+  width: 150px;
+}
 .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 1em;
   margin-left: 0.5rem;
+  color: white;
 }
 
 @media (max-width: 600px) {

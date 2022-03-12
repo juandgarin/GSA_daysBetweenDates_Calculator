@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #242a35;
+  font-family: "Teko-Regular";
 }
 
 a {
@@ -13,4 +13,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Teko-Regular";
+  src: url("/fonts/Teko-Regular.ttf");
+  font-style: normal;
+  font-weight: 300;
 }

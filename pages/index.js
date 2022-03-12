@@ -1,8 +1,38 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState, useRef } from 'react';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const [days, setDays] = useState(0);
+  const dateFrom = useRef(new Date());
+  const dateTo = useRef(new Date());
+  const [toggle, setToggle] = useState(false);
+  const calculateDays = () => {
+    if (dateTo.current.value !== "") {
+      console.log(dateTo.current.value === "")
+      var aFecha2 = dateFrom.current.value.split('-');
+      var aFecha1 = dateTo.current.value.split('-');
+      var fFecha1 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
+      var fFecha2 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
+      var dif = fFecha2 - fFecha1;
+      var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+      console.log("fecha desde:", dateFrom.current.value);
+      console.log("fecha to:", dateTo.current.value)
+
+      var fFecha1 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
+      var fFecha2 = Date.UTC(aFecha2[0], aFecha2[1] - 1, aFecha2[2]);
+      var dif = fFecha2 - fFecha1;
+      var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+      if (dias > 0) {
+        setToggle(true);
+        setDays(dias);
+      } else {
+        setToggle(false);
+        setDays(-1 * dias);
+      }
+    }
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -12,58 +42,61 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <img src="/gsawhite.png" height="200px" alt="" />
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Days Between Dates Calculator
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Get started by adding {' '}
+          <code className={styles.code}>2 different dates</code>
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <div className={styles.card}>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+            From
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+            <input className={styles.dateInput} type="date" id="start"
+              onChange={calculateDays}
+              ref={dateFrom}
+              name="trip-start"
+              min="2018-01-01" ></input>
+          </div>
+          <div className={styles.card}>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            To
+
+            <input className={styles.dateInput} type="date" id="start" name="trip-start"
+              onChange={calculateDays}
+              ref={dateTo}
+              min="2018-01-01" />
+          </div>
         </div>
-      </main>
+        <div className={styles.card}>
+          <h4>Days between dates:
+            <code className={styles.code} >
+              {days}
+            </code>
+          </h4>
+        </div>
+        <h3>{
+          toggle ? "Note: Date From is before Date to" : ""}
+        </h3>
+
+
+
+
+
+
+      </main >
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+        Powered by{' '}
+        <span className={styles.logo}>
+          <Image src="/gsawhite.png" alt="Gsa" width={55} height={40} />
+        </span>
       </footer>
-    </div>
+    </div >
   )
 }

@@ -5,6 +5,8 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const [days, setDays] = useState(0);
+  const [microCycles, setMicroCycles] = useState(0);
+  const [mesoCycles, setMesoCycles] = useState(0);
   const dateFrom = useRef(new Date());
   const dateTo = useRef(new Date());
   const [toggle, setToggle] = useState(false);
@@ -14,22 +16,28 @@ export default function Home() {
       var aFecha2 = dateFrom.current.value.split('-');
       var aFecha1 = dateTo.current.value.split('-');
       var fFecha1 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
-      var fFecha2 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
-      var dif = fFecha2 - fFecha1;
-      var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
-      console.log("fecha desde:", dateFrom.current.value);
-      console.log("fecha to:", dateTo.current.value)
-
-      var fFecha1 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
       var fFecha2 = Date.UTC(aFecha2[0], aFecha2[1] - 1, aFecha2[2]);
+ 
       var dif = fFecha2 - fFecha1;
       var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
       if (dias > 0) {
         setToggle(true);
         setDays(dias);
-      } else {
-        setToggle(false);
-        setDays(-1 * dias);
+        setMicroCycles(parseFloat(dias / 7).toFixed(2));
+        if(days>90){
+        setMesoCycles(parseFloat(dias / 90).toFixed(2));
+      }else{
+        setMesoCycles(0)
+      }
+    } else {
+      setToggle(false);
+      setDays(-1 * dias)
+      setMicroCycles(-1 * parseFloat(dias / 7).toFixed(2));
+      if(days>90){
+        setMesoCycles(-1 * parseFloat(dias / 90).toFixed(2));
+        }else{
+          setMesoCycles(0)
+        }
       }
     }
   }
@@ -61,7 +69,7 @@ export default function Home() {
               onChange={calculateDays}
               ref={dateFrom}
               name="trip-start"
-              min="2018-01-01" ></input>
+              min="1000-01-01" ></input>
           </div>
           <div className={styles.card}>
 
@@ -70,7 +78,7 @@ export default function Home() {
             <input className={styles.dateInput} type="date" id="start" name="trip-start"
               onChange={calculateDays}
               ref={dateTo}
-              min="2018-01-01" />
+              min="1000-01-01" />
           </div>
         </div>
         <div className={styles.card}>
@@ -80,14 +88,30 @@ export default function Home() {
             </code>
           </h4>
         </div>
-        <h3>{
-          toggle ? "Note: Date From is before Date to" : ""}
+        <div className={styles.card}>
+          <h4>Microcycles:
+            <code className={styles.code} >
+              {microCycles}
+            </code>
+          </h4>
+        </div>
+        <div className={styles.card}>
+          <h4>MesoCiclyes:
+            <code className={styles.code} >
+              {mesoCycles}
+            </code>
+          </h4>
+        </div>
+        <h3 style={{
+          padding:"20px",
+          font:"20px",
+          borderRadius:"10%",
+          color:`${toggle ? '#D9D9D9' : 'black'}`,
+          backgroundColor:`${toggle ? '#C00000' : 'white'}`
+        }}>{
+          toggle ?  "Inverse calculation"   : "Normal Calculation"}
         </h3>
-
-
-
-
-
+ 
 
       </main >
 
